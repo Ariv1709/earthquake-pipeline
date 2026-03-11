@@ -10,36 +10,41 @@ st.set_page_config(
     layout="wide", 
 )
 
-# Custom CSS for PURE BLACK background and glowing metrics
+# --- UPDATED CSS FOR WHITE TEXT & BLACK BG ---
 st.markdown("""
     <style>
-    /* Main background */
+    /* Global Background */
     .stApp {
         background-color: #000000;
     }
-    /* Header and Sidebar cleanup */
-    header[data-testid="stHeader"] {
-        background-color: rgba(0,0,0,0);
+    
+    /* Force all text to White */
+    h1, h2, h3, p, span, label {
+        color: #FFFFFF !important;
     }
-    section[data-testid="stSidebar"] {
-        background-color: #0a0a0a;
-    }
-    /* Metrics Styling */
+
+    /* Target Metrics specifically */
     [data-testid="stMetricValue"] {
-        color: #00d4ff !important;
+        color: #00d4ff !important; /* Keeping the neon blue for the numbers */
         font-family: 'Courier New', Courier, monospace;
     }
     [data-testid="stMetricLabel"] {
-        color: #aaaaaa !important;
+        color: #FFFFFF !important; /* Metric labels now white */
         text-transform: uppercase;
         letter-spacing: 1px;
     }
-    /* Subheader styling */
-    h1, h2, h3 {
-        color: #ffffff !important;
+
+    /* Sidebar text and background */
+    section[data-testid="stSidebar"] {
+        background-color: #0a0a0a;
     }
+    section[data-testid="stSidebar"] .stMarkdown p {
+        color: #FFFFFF !important;
+    }
+    
+    /* Divider lines */
     hr {
-        border-color: #333333 !important;
+        border-color: #444444 !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -48,7 +53,7 @@ st.markdown("""
 @st.cache_data
 def get_data():
     client = bigquery.Client()
-    PROJECT_ID = "earthquake-data-project-12345" 
+    PROJECT_ID = "earthquake-data-project-12345" # Ensure this is your ID
     QUERY = f"SELECT * FROM `{PROJECT_ID}.earthquake_analytics.stg_earthquakes` WHERE magnitude IS NOT NULL"
     df = client.query(QUERY).to_dataframe()
     df['event_time'] = pd.to_datetime(df['event_time'])
@@ -68,7 +73,7 @@ df_filtered = df[df['magnitude'] >= min_mag].copy()
 
 # 4. MAIN DASHBOARD HEADER
 st.title("🛰️ GLOBAL SEISMIC MONITOR")
-st.caption("REAL-TIME ANALYTICS ENGINE")
+st.markdown("<p style='color: #FFFFFF;'>REAL-TIME ANALYTICS ENGINE </p>", unsafe_allow_html=True)
 
 # --- ROW 1: SCORECARDS ---
 m1, m2, m3, m4 = st.columns(4)
@@ -90,10 +95,10 @@ fig_map = px.scatter_map(
     size="magnitude",
     hover_name="place",
     color_discrete_map={
-        "Major": "#FF0000",   # Pure Red
-        "Strong": "#FF5E00",  # Orange
-        "Minor": "#FFD700",   # Gold
-        "Micro": "#00FF00"    # Pure Green
+        "Major": "#FF0000",   
+        "Strong": "#FF5E00",  
+        "Minor": "#FFD700",   
+        "Micro": "#00FF00"    
     },
     zoom=1.5,
     height=650 
@@ -104,8 +109,8 @@ fig_map.update_layout(
     margin={"r":0,"t":0,"l":0,"b":0},
     paper_bgcolor="#000000",
     plot_bgcolor="#000000",
-    font_color="#ffffff",
-    legend=dict(yanchor="top", y=0.95, xanchor="left", x=0.01, bgcolor="rgba(0,0,0,0.7)")
+    font_color="#ffffff", # Set Plotly text to white
+    legend=dict(yanchor="top", y=0.95, xanchor="left", x=0.01, bgcolor="rgba(0,0,0,0.8)", font=dict(color="white"))
 )
 st.plotly_chart(fig_map, use_container_width=True)
 
@@ -119,7 +124,11 @@ with b_left:
     df_daily = df_filtered.groupby('date').size().reset_index(name='count')
     fig_line = px.line(df_daily, x='date', y='count', markers=True, template="plotly_dark")
     fig_line.update_traces(line_color='#00d4ff', line_width=2)
-    fig_line.update_layout(paper_bgcolor="#000000", plot_bgcolor="#000000")
+    fig_line.update_layout(
+        paper_bgcolor="#000000", 
+        plot_bgcolor="#000000",
+        font_color="#ffffff"
+    )
     st.plotly_chart(fig_line, use_container_width=True)
 
 with b_right:
@@ -130,8 +139,12 @@ with b_right:
         color_discrete_map={"Major": "#FF0000", "Strong": "#FF5E00", "Minor": "#FFD700", "Micro": "#00FF00"},
         template="plotly_dark"
     )
-    fig_pie.update_layout(paper_bgcolor="#000000", plot_bgcolor="#000000")
+    fig_pie.update_layout(
+        paper_bgcolor="#000000", 
+        plot_bgcolor="#000000",
+        font_color="#ffffff"
+    )
     st.plotly_chart(fig_pie, use_container_width=True)
 
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: #555555; font-size: 12px;'>SYSTEM STATUS: ONLINE | DATABASE: BIGQUERY | PROJECT: Earthquake_pipeline</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #FFFFFF; font-size: 12px;'>SYSTEM STATUS: ONLINE | DATABASE: BIGQUERY</p>", unsafe_allow_html=True)
