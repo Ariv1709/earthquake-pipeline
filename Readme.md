@@ -32,6 +32,10 @@ The pipeline is built on the **Modern Data Stack (MDS)** principles:
 * **Plotly & Mapbox:** For high-resolution, interactive geospatial rendering.
 
 ---
+To start the phase-by-phase developement download the file, and open the terminal and write:
+```bash
+pip install -r requirements.txt
+```
 
 
 
