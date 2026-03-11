@@ -92,7 +92,7 @@ With the ingestion engine functional, Phase 2 focused on transforming the raw st
 
         * Access Control: Configured IAM (Identity and Access Management) to allow the dbt service account to read from Bronze and write to Silver/Gold.
 ### 🛠️ Technical execution:
-    1. **Schema Validation Query**
+1. **Schema Validation Query**
         To ensure Phase 2 was successful, the following "Sanity Check" SQL was executed in the BigQuery console:
         ```sql
         SELECT 
@@ -102,7 +102,7 @@ With the ingestion engine functional, Phase 2 focused on transforming the raw st
         WHERE table_name = 'stg_earthquakes';
         ```
     
-    2. **Data Quality Check**
+2. **Data Quality Check**
         ```sql
             SELECT 
                 count(*) as total_rows,
@@ -118,7 +118,7 @@ Phase 3 is the "brain" of the pipeline. Here, we shifted from raw data storage t
 3. Develop a Seismic Severity Classification logic (Feature Engineering).
 4. Cleanse geographic data for high-precision mapping.
 
-###📋 Step-by-Step Implementation
+### 📋 Step-by-Step Implementation
 1. **dbt Project Initialization**
     * Project Scaffolding: Initialized the earthquake_transform directory and configured dbt_project.yml.
     * Profile Connection: Created a profiles.yml to securely connect dbt to BigQuery using the Service Account JSON key.
