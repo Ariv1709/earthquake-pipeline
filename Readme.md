@@ -33,7 +33,22 @@ The pipeline is built on the **Modern Data Stack (MDS)** principles:
 
 ---
 
+To start the project the python version should be 3.9, start a virtual environment:
+```bash
+# Open your terminal in the project folder
+python -m venv venv
 
+# Activate the environment
+# On Windows:
+.\venv\Scripts\activate
+# On Mac/Linux:
+source venv/bin/activate
+```
+Then install the required dependencies:
+```bash
+pip install -r requirements.txt
+```
+Then you can proceed phase by phase as described below.
 
 ## Phase 1: Ingestion & Cloud Sync
 In this initial phase, the objective was to establish a reliable bridge between the external seismic data provider (USGS) and our internal cloud data warehouse (Google BigQuery).
