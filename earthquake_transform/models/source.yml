@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw_usgs
+    database: earthquake-data-project-12345  # Your Project ID
+    schema: raw_earthquake_data               # Your Dataset Name
+    tables:
+      - name: earthquakes                     # Your Table Name

@@ -1,0 +1,4 @@
+dlt[bigquery]
+pandas
+requests
+google-cloud-bigquery
