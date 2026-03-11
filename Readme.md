@@ -1,10 +1,7 @@
 # 🛰️ Global Seismic Command Center
-**An End-to-End Data Engineering Pipeline | ECE Portfolio Project**
-# 🛰️ Global Seismic Command Center
-
-![Dashboard Header](<img width="1278" height="844" alt="Screenshot 2026-03-11 202032" src="https://github.com/user-attachments/assets/85da9ef7-f7e4-482b-9c81-9662062eafeb" />)
 
 <img width="1278" height="844" alt="Screenshot 2026-03-11 202032" src="https://github.com/user-attachments/assets/85da9ef7-f7e4-482b-9c81-9662062eafeb" />
+
 ## 📖 Project Overview
 This project is a high-performance data pipeline designed to monitor global seismic activity in real-time. It demonstrates a complete **ELT (Extract, Load, Transform)** workflow, moving data from a public API into a Cloud Data Warehouse and finally into a custom-built analytics dashboard.
 
