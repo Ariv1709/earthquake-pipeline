@@ -1,8 +1,10 @@
 # 🛰️ Global Seismic Command Center
-**An End-to-End Data Engineering Pipeline | ECE Portfolio Project**
+
+<img width="1278" height="844" alt="Screenshot 2026-03-11 202032" src="https://github.com/user-attachments/assets/85da9ef7-f7e4-482b-9c81-9662062eafeb" />
 
 ## 📖 Project Overview
 This project is a high-performance data pipeline designed to monitor global seismic activity in real-time. It demonstrates a complete **ELT (Extract, Load, Transform)** workflow, moving data from a public API into a Cloud Data Warehouse and finally into a custom-built analytics dashboard.
+
 
 ## 🔬 Key Features
 * **Automated Ingestion:** Fetches GeoJSON data from the USGS API.
@@ -72,14 +74,14 @@ With the ingestion engine functional, Phase 2 focused on transforming the raw st
 3. Validate geographic and temporal data types for downstream processing.
 
 ### 📋 Step-by-Step Implementation
-   1. **Dataset Layering Strategy**
+ 1. **Dataset Layering Strategy**
         To follow industry best practices, the BigQuery environment was partitioned into three distinct layers:
 
         * Bronze (Raw): stg_earthquakes_raw — Untouched data directly from the API.
         * Silver (Cleaned): stg_earthquakes — Data that has been cast to correct types (Float, Timestamp) but not yet aggregated.
         * Gold (Analytics): earthquake_summary — The final "Source of Truth" used by the dashboard.
 
-    2. **Schema Hardening**
+ 2. **Schema Hardening**
         In this phase, we moved away from "Auto-detect" schema to a Defined Schema. This ensures that if the USGS API changes its data format, our pipeline fails gracefully rather than ingesting "dirty" data.
 
         * The id field was designated as the unique identifier to prevent duplicate earthquake records.
@@ -87,7 +89,7 @@ With the ingestion engine functional, Phase 2 focused on transforming the raw st
   
         * The latitude and longitude fields were explicitly cast as FLOAT64 to prepare for BigQuery's ST_GEOGPOINT functions.
 
-    3. **BigQuery Resource Allocation**
+3. **BigQuery Resource Allocation**
         * Dataset Location: Set to US (or a specific region like asia-south1) to minimize latency and manage data residency.
 
         * Access Control: Configured IAM (Identity and Access Management) to allow the dbt service account to read from Bronze and write to Silver/Gold.
