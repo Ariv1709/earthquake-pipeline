@@ -1,4 +1,16 @@
-dlt[bigquery]
-pandas
-requests
+# Cloud and Database
 google-cloud-bigquery
+pandas-gbq
+pyarrow
+
+# Transformation (Analytics Engineering)
+dbt-core
+dbt-bigquery
+
+# Visualization and Dashboard
+streamlit
+plotly
+pandas
+
+# Utilities
+requests
